@@ -61,22 +61,21 @@ namespace Exercicio2
         public void GetFriendsBirthday()
         {
             if (this.people == null) return;
-            var people = this.people.Where(person => person is Friend);
+            var people = this.people.Where(person => person is Friend).Select(person => (Friend) person);
             foreach (var person in people) {
-                var friend = (Friend) person;
-                Console.WriteLine(friend.BirthdayDate);
+                Console.WriteLine(person.BirthdayDate);
             }
         }
 
         public void getFamiliarEmails()
         {
             if (this.people == null) return;
-            var people = this.people.Where(person => person is Familiar);
-            foreach (var person in people) {
-                var familiar = (Familiar) person;
-                Console.WriteLine(familiar.Email);
-            }
-        }
+            var emails = this.people
+                .Where(person => person is Familiar)
+                .Cast<Familiar>()
+                .Select(person => person.Email);
+            Console.WriteLine(String.Join(",", emails));
+        } 
 
         public void addData()
         {

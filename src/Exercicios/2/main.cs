@@ -5,7 +5,7 @@ namespace Exercicio2
         public override void start()
         {
             var agenda = new Agenda();
-            agenda.addData();
+            //agenda.addData();
             agenda.getFamiliarEmails();
             agenda.GetFriendsBirthday();
         }
